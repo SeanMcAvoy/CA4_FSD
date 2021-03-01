@@ -14,12 +14,24 @@ font-family: 'Roboto', sans-serif; title */
 .heading{
 color: #DD00FF;
 font-family: 'Roboto', sans-serif;
-
 }
 .logo{
 position: absolute;
 /* float: left; */
 margin-left: 15%;
+}
+#pi {
+  
+ 
+    position: relative;
+    width: 150px;
+    right: -100px;
+}
+#pi h1 {
+  
+    color: #DD00FF;
+    font-family: 'Roboto', sans-serif;
+   
 }
 .container {
   padding-top: 10px;
