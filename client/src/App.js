@@ -16,6 +16,9 @@ import DeleteTopic from "./components/DeleteTopic"
 import UpdateTopic from "./components/UpdateTopic";
 import Comments from "./components/DisplayAllComments";
 import AddComment from "./components/AddComment"
+import EditPassword from "./components/EditPassword"
+import AdminArea from "./components/AdminArea"
+import EditUser from "./components/EditUser"
 
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
 import DeleteComment from "./components/DeleteComment"
@@ -42,6 +45,8 @@ export default class App extends Component
                     <Route exact path="/ResetDatabase" component={ResetDatabase} />                    
                     <Route exact path="/" component={DisplayBody} />
                     <Route exact path="/Login" component={Login} />
+                    <Route exact path="/EditPassword/:id"  component={EditPassword} />
+                    <PrivateRoute exact path="/AdminArea"  component={AdminArea} />
                     <PrivateRoute exact path="/Logout" component={Logout}/>
                     <PrivateRoute exact path="/AddTopic" component={AddTopic} />
                     <PrivateRoute exact path="/EditTopic/:id" component={EditTopic} />
@@ -50,6 +55,7 @@ export default class App extends Component
                     <Route exact path="/Comments" component={Comments} />
                     <PrivateRoute exact path="/AddComment" component={AddComment} />
                     <PrivateRoute exact path="/DeleteComment/:id" component={DeleteComment}/>
+                    <Route exact path="/EditUser/:id" component={EditUser} />
                     {/* <PrivateRoute exact path="/AddComment" component={AddComment} /> */}
                     <Route exact path="/DisplayBody" component={DisplayBody}/> 
                     <Route path="*" component={DisplayBody}/>                            

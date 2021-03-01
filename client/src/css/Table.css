@@ -1,0 +1,61 @@
+body {
+    background-color: lightblue;
+  }
+
+  #uTable th
+  {
+      text-align: left;
+      background-color:#aaa;
+      color:#fff;
+  }
+  
+  #uTable th:first-of-type
+  {
+      border-top-left-radius:10px;
+  }
+  
+  #uTable th:last-of-type
+  {
+      border-top-right-radius:10px;
+  }
+  
+  #uTable th,
+  #uTable td
+  {
+      padding:5px;
+  }
+  
+  #uTable .population
+  {
+      text-align:right;
+  }
+  
+  #uTable tbody
+  {
+      border:thin solid #aaa;
+  }
+  
+  #uTable tbody tr:nth-child(odd)
+  {
+      background-color: #0CF4E8;
+  }
+  #uTable tbody tr:nth-child(even)
+  {
+      background-color:white;
+  }
+  
+  #uTable th:hover
+  {
+      cursor:pointer;
+      color:#fff;
+      background-color: #f99;
+      font-weight: bolder;
+  }
+
+  #uTable
+{
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
+    border-collapse:collapse;
+}

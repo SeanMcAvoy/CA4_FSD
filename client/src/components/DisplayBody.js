@@ -11,10 +11,8 @@ import { ACCESS_LEVEL_GUEST, ACCESS_LEVEL_ADMIN, SERVER_HOST } from "../config/g
 // import topics from "./topics";
 
 
-export default class DisplayAllCars extends Component 
-{
-    constructor(props) 
-    {
+export default class DisplayAllCars extends Component {
+    constructor(props) {
         super(props)
 
         this.state = {
@@ -23,20 +21,19 @@ export default class DisplayAllCars extends Component
     }
 
 
-    componentDidMount() 
-    {
+    componentDidMount() {
         axios.get(`${SERVER_HOST}/topics/`)
             .then(res => {
                 this.setState({ topics: res.data })
                 console.log(this.state.topics)
-            
+
             })
             .catch(err => {
                 console.log("could not get Topic Data");
             })
     }
 
-    
+
     render() {
         return (
             <Container className="container" maxWidth="lg">
@@ -49,18 +46,18 @@ export default class DisplayAllCars extends Component
                         <br></br>
                         <Grid container justify="space-between" alignItems="stretch" spacing={3}>
                             <Grid item sm={7}>
-                                
+
                                 <div className="form-container">
                                     {/* <CarTable topics={this.state.topics} /> */}
                                     <Grid container alignItems="stretch">
                                         {this.state.topics.map((topic) => (
                                             <Grid key={topic._id} sm={6}>
-                                                <Topics key={topic._id} topic={topic}/>
+                                                <Topics key={topic._id} topic={topic} />
                                             </Grid>
 
                                         ))}
                                     </Grid>
-                                    
+
                                     {
                                         localStorage.accessLevel >= ACCESS_LEVEL_ADMIN
                                             ? <div className="add-new-car">
@@ -87,6 +84,19 @@ export default class DisplayAllCars extends Component
                                                 <Link className="green-button" to={"/Login"}>Login</Link>
                                                 <Link className="blue-button" to={"/Register"}>Register</Link>
                                                 <Link className="red-button" to={"/ResetDatabase"}>Reset Database</Link>  <br /><br /><br /></div>
+                                    }
+                                    {
+                                        localStorage.accessLevel >= ACCESS_LEVEL_ADMIN
+                                            ? <div>
+
+                                                <div id="admin_button">
+                                                    <div className="admin_area">
+                                                        <Link className="green-button" to={"/AdminArea"}>Admin Area</Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            : null
                                     }
 
 

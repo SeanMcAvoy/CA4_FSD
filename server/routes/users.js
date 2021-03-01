@@ -204,12 +204,97 @@ const returnUsersDetailsAsJSON = (req, res, next) =>
 }
 
 
+const getAllUserDocuments = (req, res, next) => 
+{   
+    //user does not have to be logged in to see car details
+    usersModel.find((err, data) => 
+    {       
+        if(err)
+        {
+            return next(err)
+        }     
+        
+        return res.json(data)
+    })
+}
+const checkThatEmailisUnique = (req, res, next) =>
+{
+    usersModel.findOne({email:req.params.email}, (err, data) => 
+    {
+        if(err)
+        {
+            return next(err)
+        }        
+
+        req.data = data            
+        return res.json(data);       
+    })    
+}
+const getAllUserEmails = (req, res, next) => 
+{   
+    //user does not have to be logged in to see car details
+    usersModel.find((err, data) => 
+    {       
+        if(err)
+        {
+            return next(err)
+        }     
+        
+        return res.json(data.email)
+    })
+}
+
+const verifyUsersJWTPassword = (req, res, next) =>
+{
+    jwt.verify(req.headers.authorization, JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => 
+    {
+        if (err) 
+        { 
+            return next(err)
+        }
+
+        req.decodedToken = decodedToken
+        return next()
+    })
+}
+
+const updateCarDocument = (req, res, next) => 
+{
+    
+    usersModel.findByIdAndUpdate(req.params.id, {$set: req.body}, (err, data) => 
+    {
+        if(err)
+        {
+            return next(err)
+        }  
+        
+        return res.json(data)
+    })        
+} 
+const getUserDocument = (req, res, next) => 
+{
+  
+    usersModel.findById(req.params.id, (err, data) => 
+    {
+        if(err)
+        {
+            return next(err)
+        }  
+        
+        return res.json(data)
+    })
+}
+
 const logout = (req, res, next) => 
 {       
     return res.json({})
 }
 
-
+router.get('/users/',getAllUserDocuments)
+router.put(`/users/update_user/:id`, verifyUsersJWTPassword, updateCarDocument)
+router.get(`/users/get_user/:id`, verifyUsersJWTPassword, getUserDocument)
+router.get('/users/not_already/',getAllUserEmails)
+router.get('/users/unique/',checkThatEmailisUnique)
 // IMPORTANT
 // Obviously, in a production release, you should never have the code below, as it allows a user to delete a database collection
 // The code below is for development testing purposes only 
