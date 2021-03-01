@@ -1,0 +1,12 @@
+.comments{
+    padding: 5px;
+    margin: 2px;
+    background-color: lightgray;
+}
+p{
+    font-size: small;
+}
+#deleteComment{
+    height: 20px;
+}
+
